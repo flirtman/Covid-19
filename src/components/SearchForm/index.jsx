@@ -65,10 +65,15 @@ const SearchForm = (state) => {
     } 
 
     return (
-        <div>
+        <div className="search-form">
             <form onSubmit={(e) => onFormSubmit(e)} id={'countryForm'}>
                 <label>
-                    <input type={'text'} name={'country'} id={'country-input'}/>
+                    <input 
+                        type={'text'} 
+                        name={'country'} 
+                        id={'country-input'}
+                        placeholder={'Search Country'}
+                    />
                 </label>
                 <label>
                     <button>Add</button>
