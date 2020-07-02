@@ -12,6 +12,8 @@ import {capitalize} from '../../helpers';
 import './styles.scss';
 
 
+import {fetchApi} from '../../utils/getData';
+
 const mapStateToProps = (state) => {
     return {
         countryData : state.addCountryReducer
@@ -36,7 +38,8 @@ const SearchForm = (state) => {
 
     useEffect(() => {
         country !== null && console.log(country);
-        country !== null && fetchApi();
+        country !== null && fetchApi(country, addCountryData);
+        // country !== null && getDataCovid(country);
     }, [country])
 
     const onFormSubmit = (e) => {
@@ -46,24 +49,7 @@ const SearchForm = (state) => {
         addCountry(capitalize(countryInput.value));
     }
 
-    const fetchApi = () => {
-        fetch(
-            `https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total?country=${country}`,
-            {   
-                method : 'GET',
-                headers : {
-                    'x-rapidapi-host' : 'covid-19-coronavirus-statistics.p.rapidapi.com',
-                    'x-rapidapi-key' : 'd7f2f11128msha58dd360a4162cdp1d6c97jsn601ba234a70b'
-                }
-            }
-        )
-        .then(res => res.json())
-        .then(res => {
-            addCountryData(res.data)
-        })
-        .catch(console.error)
-    } 
-
+    
     return (
         <div className="search-form">
             <form onSubmit={(e) => onFormSubmit(e)} id={'countryForm'}>
