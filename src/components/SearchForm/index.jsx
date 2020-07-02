@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addCountry} from '../../store/actions/addCountry';
 
+import {capitalize} from '../../helpers';
+
 import './styles.scss';
 
 
@@ -18,7 +20,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCountry : bindActionCreators(addCountry, dispatch)
+        addCountryGlobal : bindActionCreators(addCountry, dispatch)
     }
 }
 
@@ -29,7 +31,7 @@ const SearchForm = (state) => {
     
 
     useEffect(() => {
-        countryData !== null && console.log(countryData);
+        countryData !== null && state.addCountryGlobal(countryData);
     }, [countryData])
 
     useEffect(() => {
@@ -41,7 +43,7 @@ const SearchForm = (state) => {
         e.preventDefault();
         
         const countryInput = document.getElementById('country-input');
-        addCountry(countryInput.value);
+        addCountry(capitalize(countryInput.value));
     }
 
     const fetchApi = () => {

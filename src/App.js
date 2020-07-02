@@ -1,10 +1,12 @@
 import React from 'react';
 import SearchForm from './components/SearchForm';
+import ResultsList from './components/ResultsList';
 
 function App() {
   return (
     <div className="App">
       <SearchForm/>
+      <ResultsList/>
     </div>
   );
 }
